@@ -5,12 +5,13 @@ import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
 const IndexPage = ({ data, location }) => {
+  console.log("IndexPage -> location", location)
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges.filter(
     edge => edge.node.frontmatter.template === "post"
   )
   return (
-    <Layout>
+    <Layout location={location} title={siteTitle}>
       <SEO title="Home" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
